@@ -10,7 +10,7 @@ provider "aws" {
 // "rakulogi"となっている箇所を適宜ご変更ください
 
 // (AWS CloudTrail) ログ長期保管のための設定（証跡の作成）【MUST】
-// 参考ページ<https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail>
+// https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail
 
 data "aws_caller_identity" "current" {}
 
@@ -19,6 +19,12 @@ resource "aws_cloudtrail" "rakulogi" {
   s3_bucket_name                = aws_s3_bucket.rakulogi.id 
   s3_key_prefix                 = "prefix"
   include_global_service_events = false 
+  // (AWS CloudTrail) CloudTrail Insights の有効化【SHOULD】
+  //https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#insight_selector
+
+  insight_selector{
+    insight_type=["ApiCallRateInsight", "ApiErrorRateInsight"]
+  }
 }
 
 resource "aws_s3_bucket" "rakulogi" { //2つ目の""はS3のバケット名を表すので適宜変更してください

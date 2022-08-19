@@ -16,6 +16,7 @@ resource "aws_cloudtrail" "rakulogi" {
   s3_bucket_name                = aws_s3_bucket.rakulogi.id 
   s3_key_prefix                 = "prefix"
   include_global_service_events = false
+  is_multi_region_trail = true
 }
 
 resource "aws_s3_bucket" "rakulogi" { //2つ目の""はS3のバケット名を表すので適宜変更してください

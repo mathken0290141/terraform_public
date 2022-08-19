@@ -66,30 +66,3 @@ resource "aws_s3_bucket_policy" "rakulogi" {
 POLICY
 }
 
-# (AWS Config) 有効化（レコーダーの作成）【MUST】
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/config_configuration_recorder
-
-resource "aws_config_configuration_recorder" "rakulogi" {
-  name     = "rakulogi"
-  role_arn = aws_iam_role.r.arn
-}
-
-resource "aws_iam_role" "r" {
-  name = "awsconfig-rakulogi"
-
-  assume_role_policy = <<POLICY
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Action": "sts:AssumeRole",
-      "Principal": {
-        "Service": "config.amazonaws.com"
-      },
-      "Effect": "Allow",
-      "Sid": ""
-    }
-  ]
-}
-POLICY
-}

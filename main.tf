@@ -136,3 +136,9 @@ resource "aws_iam_role_policy" "p" {
 }
 POLICY
 }
+
+# (AWS IAM (ルートユーザー)) MFA 認証の設定【MUST】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_virtual_mfa_device
+resource "aws_iam_virtual_mfa_device" "example" {
+  virtual_mfa_device_name = "example"
+}

@@ -23,7 +23,7 @@ resource "aws_cloudtrail" "rakulogi" {
   //https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cloudtrail#insight_selector
 
   insight_selector{
-    insight_type=["ApiCallRateInsight", "ApiErrorRateInsight"]
+    insight_type="ApiCallRateInsight"
   }
 }
 

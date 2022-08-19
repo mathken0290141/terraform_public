@@ -141,7 +141,7 @@ POLICY
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_access_key
 resource "aws_iam_access_key" "root" {
   user    = aws_iam_user.root.name
-  pgp_key = "keybase:some_person_that_exists"
+  # pgp_key = "keybase:some_person_that_exists"
 }
 
 resource "aws_iam_user" "root" {

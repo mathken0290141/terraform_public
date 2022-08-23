@@ -137,3 +137,15 @@ resource "aws_iam_role_policy" "p" {
 POLICY
 }
 
+# (AWS IAM) IAM パスワードポリシーの設定【MUST】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_account_password_policy
+
+resource "aws_iam_account_password_policy" "strict" {
+  minimum_password_length        = 10
+  require_lowercase_characters   = true
+  require_numbers                = true
+  require_uppercase_characters   = true
+  require_symbols                = true
+  allow_users_to_change_password = true
+}
+

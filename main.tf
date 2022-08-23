@@ -149,3 +149,64 @@ resource "aws_iam_account_password_policy" "strict" {
   allow_users_to_change_password = true
 }
 
+
+# (AWS IAM) IAM ユーザー/グループの作成【MUST】
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group
+resource "aws_iam_group" "developers" {
+  name = "developers"
+  path = "/users/"
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_membership
+
+resource "aws_iam_group_membership" "team" {
+  name = "tf-testing-group-membership"
+
+  users = [
+    aws_iam_user.user_one.name,
+    aws_iam_user.user_two.name,
+  ]
+
+  group = aws_iam_group.developers.name
+}
+
+resource "aws_iam_group" "developers" {
+  name = "developers"
+}
+
+resource "aws_iam_user" "user_one" {
+  name = "test-user"
+}
+
+resource "aws_iam_user" "user_two" {
+  name = "test-user-two"
+}
+
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy
+
+resource "aws_iam_group_policy" "developer_policy" {
+  name  = "developer_policy"
+  group = aws_iam_group.developers.name
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [
+      {
+        Action = [
+          "ec2:Describe*",
+        ]
+        Effect   = "Allow"
+        Resource = "*"
+      },
+    ]
+  })
+}
+
+resource "aws_iam_group" "developers" {
+  name = "developers"
+  path = "/users/"
+}
+

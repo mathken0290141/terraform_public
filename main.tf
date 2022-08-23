@@ -188,5 +188,5 @@ resource "aws_iam_policy" "AdministratorAccess" {
 
 resource "aws_iam_group_policy_attachment" "test-attach" {
   group      = aws_iam_group.developers.name
-  policy_arn = aws_iam_policy.AdministratorAccess.arn
+  policy_arn = data.aws_iam_policy.AdministratorAccess.arn
 }

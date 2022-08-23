@@ -182,11 +182,7 @@ resource "aws_iam_user" "user_two" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment
 # https://urotasm.hatenablog.com/entry/2020/09/22/221824
 
-resource "aws_iam_policy" "AdministratorAccess" {
-  policy      = "arn:aws:iam::aws:policy/AdministratorAccess"
-}
-
 resource "aws_iam_group_policy_attachment" "test-attach" {
   group      = aws_iam_group.developers.name
-  policy_arn = data.aws_iam_policy.AdministratorAccess.arn
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }

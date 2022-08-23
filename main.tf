@@ -180,7 +180,7 @@ resource "aws_iam_user" "user_two" {
 }
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment
-# https://urotasm.hatenablog.com/entry/2020/09/22/221824
+# https://intellipaat.com/community/28131/how-do-you-add-a-managed-policy-to-a-group-in-terraform
 
 resource "aws_iam_group_policy_attachment" "test-attach" {
   group      = aws_iam_group.developers.name

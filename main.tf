@@ -179,25 +179,14 @@ resource "aws_iam_user" "user_two" {
   name = "test-user-two"
 }
 
-# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_group_policy_attachment
+# https://urotasm.hatenablog.com/entry/2020/09/22/221824
 
-resource "aws_iam_group_policy" "developer_policy" {
-  name  = "developer_policy"
-  group = aws_iam_group.developers.name
-
-  # Terraform's "jsonencode" function converts a
-  # Terraform expression result to valid JSON syntax.
-  policy = jsonencode({
-    Version = "2012-10-17"
-    Statement = [
-      {
-        Action = [
-          "ec2:Describe*",
-        ]
-        Effect   = "Allow"
-        Resource = "*"
-      },
-    ]
-  })
+resource "aws_iam_policy" "AdministratorAccess" {
+  policy      = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
+resource "aws_iam_group_policy_attachment" "test-attach" {
+  group      = aws_iam_group.developers.name
+  policy_arn = aws_iam_policy.AdministratorAccess.arn
+}

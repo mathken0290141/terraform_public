@@ -171,10 +171,6 @@ resource "aws_iam_group_membership" "team" {
   group = aws_iam_group.developers.name
 }
 
-resource "aws_iam_group" "developers" {
-  name = "developers"
-}
-
 resource "aws_iam_user" "user_one" {
   name = "test-user"
 }
@@ -203,10 +199,5 @@ resource "aws_iam_group_policy" "developer_policy" {
       },
     ]
   })
-}
-
-resource "aws_iam_group" "developers" {
-  name = "developers"
-  path = "/users/"
 }
 

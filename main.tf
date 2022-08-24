@@ -217,3 +217,27 @@ resource "aws_accessanalyzer_archive_rule" "rakulogi" {
     eq       = ["false"]
   }
 }
+
+# (Amazon GuardDuty) 有効化【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/guardduty_detector
+resource "aws_guardduty_detector" "rakulogi" {
+  enable = true
+
+  datasources {
+    s3_logs {
+      enable = true
+    }
+    kubernetes {
+      audit_logs {
+        enable = false
+      }
+    }
+    malware_protection {
+      scan_ec2_instance_with_findings {
+        ebs_volumes {
+          enable = true
+        }
+      }
+    }
+  }
+}

@@ -254,8 +254,19 @@ resource "aws_securityhub_standards_subscription" "cis_aws_foundations_benchmark
 
 # (Amazon Detective) 有効化【SHOULD】
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/detective_graph
-resource "aws_detective_graph" "example" {
+
+# ★時間立ってから有効化する
+# resource "aws_detective_graph" "rakulogi" {
+#   tags = {
+#     Name = "rakulogi-detective-graph"
+#   }
+# }
+
+# (Amazon VPC) デフォルト VPC の削除【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc
+# https://discuss.hashicorp.com/t/destroy-default-vpc/2474/5
+resource "aws_default_vpc" "default" {
   tags = {
-    Name = "example-detective-graph"
+    force_destroy = true
   }
 }

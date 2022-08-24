@@ -188,7 +188,7 @@ resource "aws_iam_group_policy_attachment" "test-attach" {
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
 }
 
-# (AWS IAM Access Analyzer) 有効化（アナライザーの作成）【SHOULD】
+# (AWS IAM Access Analyzer)有効化（アナライザーの作成）【SHOULD】
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer
 
 

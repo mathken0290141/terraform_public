@@ -1,6 +1,7 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
+
 provider "aws" {
   access_key = var.aws_access_key
   secret_key = var.aws_secret_key
@@ -185,4 +186,12 @@ resource "aws_iam_user" "user_two" {
 resource "aws_iam_group_policy_attachment" "test-attach" {
   group      = aws_iam_group.developers.name
   policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}
+
+# (AWS IAM Access Analyzer) 有効化（アナライザーの作成）【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer
+
+
+resource "aws_accessanalyzer_analyzer" "rakulogi" {
+  analyzer_name = "rakulogi"
 }

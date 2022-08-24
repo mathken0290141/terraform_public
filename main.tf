@@ -199,7 +199,7 @@ resource "aws_accessanalyzer_analyzer" "rakulogi" {
 
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_archive_rule
 resource "aws_accessanalyzer_archive_rule" "rakulogi" {
-  analyser_name = "rakulogi"
+  analyzer_name = "rakulogi"
   rule_name     = "rakulogi-rule"
 
   filter {

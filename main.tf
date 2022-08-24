@@ -267,7 +267,13 @@ resource "aws_securityhub_standards_subscription" "cis_aws_foundations_benchmark
 # https://discuss.hashicorp.com/t/destroy-default-vpc/2474/5
 # https://dev.classmethod.jp/articles/terraform-aws-provider-version-4/#toc-4
 
-# resource "aws_default_vpc" "default" {
+resource "aws_default_vpc" "default" {
+  force_destroy = true
+}
+
+# resource "aws_default_subnet" "default_az1" {
+#   availability_zone = "us-west-2a"
+
 #   tags = {
 #     force_destroy = true
 #   }

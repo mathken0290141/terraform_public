@@ -229,7 +229,7 @@ resource "aws_guardduty_detector" "rakulogi" {
     }
     kubernetes {
       audit_logs {
-        enable = false
+        enable = true
       }
     }
     malware_protection {

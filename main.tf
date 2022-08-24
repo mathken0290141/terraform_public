@@ -197,7 +197,7 @@ resource "aws_iam_group_policy_attachment" "test-attach" {
 # }
 
 resource "aws_accessanalyzer_analyzer" "rakulogi" {
-  depends_on = [aws_organizations_organization.root]
+  # depends_on = [aws_organizations_organization.root]
 
   analyzer_name = "rakulogi"
   type          = "ORGANIZATION"

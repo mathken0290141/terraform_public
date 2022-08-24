@@ -192,12 +192,12 @@ resource "aws_iam_group_policy_attachment" "test-attach" {
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/accessanalyzer_analyzer
 
 
-resource "aws_organizations_organization" "rakulogi" {
+resource "aws_organizations_organization" "Root" {
   aws_service_access_principals = ["access-analyzer.amazonaws.com"]
 }
 
 resource "aws_accessanalyzer_analyzer" "rakulogi" {
-  depends_on = [aws_organizations_organization.rakulogi]
+  depends_on = [aws_organizations_organization.Root]
 
   analyzer_name = "rakulogi"
   type          = "ORGANIZATION"

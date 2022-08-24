@@ -265,8 +265,10 @@ resource "aws_securityhub_standards_subscription" "cis_aws_foundations_benchmark
 # (Amazon VPC) デフォルト VPC の削除【SHOULD】
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc
 # https://discuss.hashicorp.com/t/destroy-default-vpc/2474/5
-resource "aws_default_vpc" "default" {
-  tags = {
-    force_destroy = true
-  }
-}
+# https://dev.classmethod.jp/articles/terraform-aws-provider-version-4/#toc-4
+
+# resource "aws_default_vpc" "default" {
+#   tags = {
+#     force_destroy = true
+#   }
+# }

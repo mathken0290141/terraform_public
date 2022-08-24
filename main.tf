@@ -271,10 +271,8 @@ resource "aws_default_vpc" "default" {
   force_destroy = true
 }
 
-# resource "aws_default_subnet" "default_az1" {
-#   availability_zone = "us-west-2a"
+resource "aws_default_subnet" "default_az1" {
+  availability_zone = "ap-northeast-1"
 
-#   tags = {
-#     force_destroy = true
-#   }
-# }
+  force_destroy = true
+}

@@ -252,9 +252,10 @@ resource "aws_securityhub_standards_subscription" "cis_aws_foundations_benchmark
   depends_on    = [aws_securityhub_account.rakulogi]
 }
 
-# resource "aws_securityhub_standards_control" "ensure_iam_password_policy_prevents_password_reuse" {
-#   standards_control_arn = "arn:aws:securityhub:us-east-1:111111111111:control/cis-aws-foundations-benchmark/v/1.2.0/1.10"
-#   control_status        = "ENABLED"
-
-#   depends_on = [aws_securityhub_standards_subscription.cis_aws_foundations_benchmark]
-# }
+# (Amazon Detective) 有効化【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/detective_graph
+resource "aws_detective_graph" "example" {
+  tags = {
+    Name = "example-detective-graph"
+  }
+}

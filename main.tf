@@ -200,5 +200,5 @@ resource "aws_accessanalyzer_analyzer" "rakulogi" {
   # depends_on = [aws_organizations_organization.root]
 
   analyzer_name = "rakulogi"
-  type          = "ORGANIZATION"
+  type          = "ACCOUNT"
 }

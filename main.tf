@@ -262,6 +262,7 @@ resource "aws_detective_graph" "rakulogi" {
 }
 
 # (Amazon VPC) デフォルト VPC の削除【SHOULD】
+# 以下の方法でも削除できませんでした。
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_vpc
 # https://discuss.hashicorp.com/t/destroy-default-vpc/2474/5
 # https://dev.classmethod.jp/articles/terraform-aws-provider-version-4/#toc-4
@@ -275,4 +276,28 @@ resource "aws_default_subnet" "default_az1" {
 
   force_destroy = true
 }
+
+# (AWS Cost Explorer) 有効化（起動）【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_subscription
+
+resource "aws_ce_anomaly_monitor" "rakulogi" {
+  name      = "AWSServiceMonitor"
+  type      = "DIMENSIONAL"
+  dimension = "SERVICE"
+}
+
+resource "aws_ce_anomaly_subscription" "rakulogi" {
+  name      = "DAILYSUBSCRIPTION"
+  threshold = 100
+  frequency = "DAILY"
+
+#   monitor_arn_list = [
+#     aws_ce_anomaly_monitor.rakulogi.arn,
+#   ]
+
+#   subscriber {
+#     type    = "EMAIL"
+#     address = "abc@example.com"
+#   }
+# }
 

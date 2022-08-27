@@ -255,7 +255,6 @@ resource "aws_securityhub_standards_subscription" "cis_aws_foundations_benchmark
 # (Amazon Detective) 有効化【SHOULD】
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/detective_graph
 
-# ★時間立ってから有効化する
 resource "aws_detective_graph" "rakulogi" {
   tags = {
     Name = "rakulogi-detective-graph"
@@ -267,13 +266,13 @@ resource "aws_detective_graph" "rakulogi" {
 # https://discuss.hashicorp.com/t/destroy-default-vpc/2474/5
 # https://dev.classmethod.jp/articles/terraform-aws-provider-version-4/#toc-4
 
-# resource "aws_default_vpc" "default" {
-#   force_destroy = true
-# }
+resource "aws_default_vpc" "default" {
+  force_destroy = true
+}
 
-# resource "aws_default_subnet" "default_az1" {
-#   availability_zone = "ap-northeast-1a"
+resource "aws_default_subnet" "default_az1" {
+  availability_zone = "ap-northeast-1a"
 
-#   force_destroy = true
-# }
+  force_destroy = true
+}
 

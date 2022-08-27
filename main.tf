@@ -278,11 +278,12 @@ resource "aws_default_subnet" "default_az1" {
 }
 
 # (AWS Cost Explorer) 有効化（起動）【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_monitor
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_subscription
 
 resource "aws_ce_anomaly_monitor" "rakulogi" {
   name      = "AWSServiceMonitor"
-  type      = "DIMENSIONAL"
+  monitor_type   = "DIMENSIONAL"
   dimension = "SERVICE"
 }
 

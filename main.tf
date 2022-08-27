@@ -284,7 +284,7 @@ resource "aws_default_subnet" "default_az1" {
 resource "aws_ce_anomaly_monitor" "rakulogi" {
   name      = "AWSServiceMonitor"
   monitor_type   = "DIMENSIONAL"
-  dimension = "SERVICE"
+  monitor_dimension = "SERVICE"
 }
 
 resource "aws_ce_anomaly_subscription" "rakulogi" {

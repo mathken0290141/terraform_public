@@ -291,13 +291,13 @@ resource "aws_ce_anomaly_subscription" "rakulogi" {
   threshold = 100
   frequency = "DAILY"
 
-#   monitor_arn_list = [
-#     aws_ce_anomaly_monitor.rakulogi.arn,
-#   ]
+  monitor_arn_list = [
+    aws_ce_anomaly_monitor.rakulogi.arn,
+  ]
 
-#   subscriber {
-#     type    = "EMAIL"
-#     address = "abc@example.com"
-#   }
-# }
+  subscriber {
+    type    = "EMAIL"
+    address = "abc@example.com"
+  }
+}
 

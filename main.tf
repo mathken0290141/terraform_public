@@ -277,7 +277,7 @@ resource "aws_default_subnet" "default_az1" {
   force_destroy = true
 }
 
-# (AWS Cost Explorer) 有効化（起動）【SHOULD】
+# ### (AWS Cost Anomaly Detection) 有効化（モニターとサブスクリプション設定）【SHOULD】
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_monitor
 # https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ce_anomaly_subscription
 
@@ -299,6 +299,24 @@ resource "aws_ce_anomaly_subscription" "rakulogi" {
   subscriber {
     type    = "EMAIL"
     address = "abc@example.com"
+  }
+}
+
+# (AWS Budgets) 予算アラートの設定【SHOULD】
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/budgets_budget
+
+resource "aws_budgets_budget" "rakulogi" {
+  name         = "budget-monthly"
+  budget_type  = "COST"
+  limit_amount = "100"
+  limit_unit   = "USD"
+
+    notification {
+    comparison_operator        = "GREATER_THAN"
+    threshold                  = 80
+    threshold_type             = "PERCENTAGE"
+    notification_type          = "FORECASTED"
+    subscriber_email_addresses = ["test@example.com"]
   }
 }
 
